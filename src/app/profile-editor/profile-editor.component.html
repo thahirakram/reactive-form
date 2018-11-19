@@ -1,0 +1,38 @@
+<div class="col-md-6 mx-auto">
+  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label>firstName</label>
+      <input type="text" class="form-control" formControlName="firstName">
+    </div>
+    <div class="form-group">
+      <label>laststName</label>
+      <input type="text" class="form-control" formControlName="lastName">
+    </div>
+    <!-- nested form -->
+    <div formGroupName="address">
+      <h2>address</h2>
+      <div class="form-group">
+        <label>street</label>
+        <input type="text" class="form-control" formControlName="street">
+      </div>
+      <div class="form-group">
+        <label>city</label>
+        <input type="text" class="form-control" formControlName="city">
+      </div>
+      <div class="form-group">
+        <label>state</label>
+        <input type="text" class="form-control" formControlName="state">
+      </div>
+      <div class="form-group">
+        <label>zip</label>
+        <input type="text" class="form-control" formControlName="zip">
+      </div>
+    </div>
+    <button class="btn btn-success" type="submit" [disabled]="profileForm.invalid">Submit</button>
+  </form>
+
+  <button type="submit" class="btn btn-succes mt-5" (click)="updateProfile()">update profile</button>
+  <p class="mt-5">
+    Form Status: {{ profileForm.status }}
+  </p>
+</div>
