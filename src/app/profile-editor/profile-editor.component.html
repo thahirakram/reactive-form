@@ -1,38 +1,74 @@
-<div class="col-md-6 mx-auto">
-  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label>firstName</label>
+<div class="col-md-5 mx-auto">
+  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="p-5">
+    <div class="form-group row">
+      <label class="col-md-2">firstName</label>
+      <div class="col-md-10">
+
       <input type="text" class="form-control" formControlName="firstName">
+      </div>
     </div>
-    <div class="form-group">
-      <label>laststName</label>
+    <div class="form-group row">
+      <label class="col-md-2">laststName</label>
+      <div class="col-md-10">
+
       <input type="text" class="form-control" formControlName="lastName">
+      </div>
     </div>
-    <!-- nested form -->
+
+
+    <!-- nesting form -->
     <div formGroupName="address">
       <h2>address</h2>
-      <div class="form-group">
-        <label>street</label>
-        <input type="text" class="form-control" formControlName="street">
+      <div class="form-group row">
+        <label class="col-md-2">street</label>
+        <div class="col-md-10">
+          <input type="text" class="form-control" formControlName="street">
+        </div>
       </div>
-      <div class="form-group">
-        <label>city</label>
-        <input type="text" class="form-control" formControlName="city">
+      <div class="form-group row">
+        <label class="col-md-2">city</label>
+        <div class="col-md-10">
+          <input type="text" class="form-control" formControlName="city">
+        </div>
       </div>
-      <div class="form-group">
-        <label>state</label>
-        <input type="text" class="form-control" formControlName="state">
+      <div class="form-group row">
+        <label class="col-md-2">state</label>
+        <div class="col-md-10">
+
+          <input type="text" class="form-control" formControlName="state">
+        </div>
       </div>
-      <div class="form-group">
-        <label>zip</label>
-        <input type="text" class="form-control" formControlName="zip">
+      <div class="form-group row">
+        <label class="col-md-2">zip</label>
+        <div class="col-md-10">
+
+          <input type="text" class="form-control" formControlName="zip">
+        </div>
       </div>
     </div>
-    <button class="btn btn-success" type="submit" [disabled]="profileForm.invalid">Submit</button>
-  </form>
 
-  <button type="submit" class="btn btn-succes mt-5" (click)="updateProfile()">update profile</button>
-  <p class="mt-5">
+    <!-- form array Name -->
+    <div formArrayName="aliases">
+      <button class="btn btn-success mb-4" (click)="addalias()">add</button>
+
+      <div *ngFor="let address of aliases.controls; let i = index">
+        <div class="form-group row">
+          <label class="col-md-2">Alias</label>
+          <div class="col-md-10">
+
+            <input type="text" class="form-control" [formControlName]="i">
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <button class="btn btn-success mt-3" type="submit" [disabled]="profileForm.valid">Submit</button>
+  </form>
+  <button class="btn btn-succes mt-1" (click)="updateProfile()">update profile</button>
+  <p class="mt-3">
+      Form Value: {{ profileForm.value | json }}
+  </p>
+  <p class="mt-3">
     Form Status: {{ profileForm.status }}
   </p>
 </div>
